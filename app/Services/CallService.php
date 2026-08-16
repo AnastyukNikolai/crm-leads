@@ -14,6 +14,8 @@ class CallService
     public function createCall(Lead $lead, array $data): Call
     {
         return DB::transaction(function () use ($lead, $data) {
+            $lead = Lead::whereKey($lead->getKey())->lockForUpdate()->firstOrFail();
+
             return $lead->calls()->create($data);
         });
     }
