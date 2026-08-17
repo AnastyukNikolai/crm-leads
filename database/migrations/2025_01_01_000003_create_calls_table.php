@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('calls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lead_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('manager_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('manager_id')->constrained()->nullOnDelete();
             $table->unsignedInteger('duration');
             $table->string('result');
             $table->timestamps();
